@@ -7,3 +7,15 @@ However, in computer memory, 1 KB is equal to 1,024 bytes, and so on. So the act
 
 Write a program that prompts the user to enter the size of the hard drive specified by the manufacturer, on the hard drive box, and outputs the actual storage capacity of the hard drive.
 """
+
+  HARD DRIVE
+  If you buy a 40 GB hard drive, then chances are that the actual storage on the hard drive is not 40 GB.
+
+  
+   def convert_to_gb(gb):
+    return gb * 1000**3 / (1024**3)
+
+manufacturer_gb = float(input("40GB): ")) Enter the size of the hard drive specified by the manufacturer here
+actual_gb = convert_to_gb(manufacturer_gb)
+
+print("The actual storage capacity of the hard drive is {:.2f} GB".format(actual_gb))

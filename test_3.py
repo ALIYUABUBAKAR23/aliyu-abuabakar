@@ -36,3 +36,40 @@ It should return a dictionary like this:
 }
 
 """
+
+import csv
+
+def goat_awards(csv_file):
+    with open(csv_file, 'r') as file:
+        reader = csv.DictReader(file)
+        player_data = {}
+        for row in reader:
+            name = row['name']
+            points = int(row['points'])
+            rebounds = int(row['rebounds'])
+            assists = int(row['assists'])
+            blocks = int(row['blocks'])
+            if name not in player_data:
+                player_data[name] = {
+                    'points': points,
+                    'rebounds': rebounds,
+                    'assists': assists,
+                    'blocks': blocks
+                }
+            else:
+                player_data[name]['points'] += points
+                player_data[name]['rebounds'] += rebounds
+                player_data[name]['assists'] += assists
+                player_data[name]['blocks'] += blocks
+
+        most_points = max(player_data.items(), key=lambda x: x[1]['points'])
+        most_assists = max(player_data.items(), key=lambda x: x[1]['assists'])
+        most_rebounds = max(player_data.items(), key=lambda x: x[1]['rebounds'])
+        most_blocks = max(player_data.items(), key=lambda x: x[1]['blocks'])
+
+        return {
+            'most_points': [most_points[0], most_points[1]['points']],
+            'most_assists': [most_assists[0], most_assists[1]['assists']],
+            'most_rebounds': [most_rebounds[0], most_rebounds[1]['rebounds']],
+            'most_blocks': [most_blocks[0], most_blocks[1]['blocks']]
+        }
